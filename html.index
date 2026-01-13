@@ -1,0 +1,76 @@
+<!DOCTYPE html><html lang="th">
+<head>
+  <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>รักนะเว้ย 💗</title>
+        <style>
+            * {
+                      box-sizing: border-box;
+                            font-family: 'Segoe UI', 'Prompt', system-ui, sans-serif;
+            }body {
+                  margin: 0;
+                    height: 100vh;
+                      background: linear-gradient(135deg, #ffd1e8, #ff9acb);
+                        display: flex;
+                          align-items: center;
+                            justify-content: center;
+            }
+
+            .card {
+                  background: rgba(255, 255, 255, 0.9);
+                    border-radius: 24px;
+                      padding: 32px 24px;
+                        width: 90%;
+                          max-width: 360px;
+                            text-align: center;
+                              box-shadow: 0 20px 40px rgba(255, 105, 180, 0.35);
+                                animation: float 3s ease-in-out infinite;
+            }
+
+            .line {
+                  font-size: 1.2rem;
+                    margin: 12px 0;
+                      color: #ff4f9a;
+            }
+
+            .line.big {
+                  font-size: 1.6rem;
+                    font-weight: bold;
+            }
+
+            @keyframes float {
+                  0% { transform: translateY(0); }
+                    50% { transform: translateY(-6px); }
+                      100% { transform: translateY(0); }
+            }
+
+            .heart {
+                  font-size: 2rem;
+                    animation: beat 1.2s infinite;
+                      display: inline-block;
+            }
+
+            @keyframes beat {
+                  0%, 100% { transform: scale(1); }
+                    50% { transform: scale(1.25); }
+            }
+
+              </style>
+              </head>
+              <body>
+                <div class="card">
+                    <div class="line">บรรทัดที่ 1 (ไปเขียนเอาเองนะคนเก่ง)</div>
+                        <div class="line big">บรรทัดที่ 2 💖</div>
+                            <div class="line">บรรทัดที่ 3</div>
+                                <div class="heart">💗</div>
+                                  </div>
+                                  </body>
+                                  </html>
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
