@@ -92,7 +92,7 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80');
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9));
             background-size: cover;
             background-position: center;
             color: white;
@@ -174,10 +174,12 @@
         .about-image {
             flex: 1;
             min-width: 300px;
+            text-align: center;
         }
 
         .about-image img {
             width: 100%;
+            max-width: 400px;
             border-radius: 10px;
             box-shadow: var(--shadow);
         }
@@ -232,6 +234,10 @@
             border-radius: 10px;
             box-shadow: var(--shadow);
             height: 250px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .gallery-item img {
@@ -259,6 +265,38 @@
 
         .gallery-item:hover .gallery-overlay {
             transform: translateY(0);
+        }
+
+        .image-placeholder {
+            color: #777;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .image-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* Image Upload Section */
+        .upload-section {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .upload-section h3 {
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+
+        .file-input {
+            margin: 1rem 0;
+            padding: 0.5rem;
         }
 
         /* Footer */
@@ -367,7 +405,7 @@
         <div class="container">
             <div class="hero-content">
                 <h1>Welcome to My Personal Portfolio</h1>
-                <p>Hi! I'm John Doe, a passionate web developer and designer. I create beautiful and functional websites that help businesses grow online.</p>
+                <p>Hi! I'm [Your Name], a passionate [Your Profession]. This website showcases my work, experiences, and personal journey.</p>
                 <a href="#about" class="btn">Learn More About Me</a>
             </div>
         </div>
@@ -381,20 +419,22 @@
             </div>
             <div class="about-content">
                 <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Profile Picture">
+                    <!-- Replace with your profile picture -->
+                    <img src="profile.jpg" alt="Profile Picture" id="profile-pic">
+                    <p><small>Replace this image with your profile picture</small></p>
                 </div>
                 <div class="about-text">
-                    <h3>Hello, I'm John Doe</h3>
-                    <p>I'm a professional web developer with over 5 years of experience creating modern, responsive websites and web applications. My passion is to transform ideas into digital solutions that deliver value.</p>
-                    <p>I specialize in front-end development with HTML, CSS, JavaScript, and React, but I also have experience with back-end technologies like Node.js and PHP. I believe in writing clean, efficient code and creating user-friendly interfaces.</p>
+                    <h3>Hello, I'm [Your Name]</h3>
+                    <p>I'm a passionate professional with experience in [Your Field]. I love creating meaningful work and sharing my journey with others.</p>
+                    <p>My interests include [Your Interests], and I'm always looking for new opportunities to learn and grow both personally and professionally.</p>
                     
                     <ul class="info-list">
-                        <li><i class="fas fa-user"></i> <strong>Name:</strong> John Doe</li>
-                        <li><i class="fas fa-calendar-alt"></i> <strong>Age:</strong> 28</li>
-                        <li><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> New York, USA</li>
-                        <li><i class="fas fa-graduation-cap"></i> <strong>Education:</strong> BS Computer Science</li>
-                        <li><i class="fas fa-briefcase"></i> <strong>Profession:</strong> Full Stack Developer</li>
-                        <li><i class="fas fa-envelope"></i> <strong>Email:</strong> john.doe@example.com</li>
+                        <li><i class="fas fa-user"></i> <strong>Name:</strong> [Your Name]</li>
+                        <li><i class="fas fa-calendar-alt"></i> <strong>Age:</strong> [Your Age]</li>
+                        <li><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> [Your City, Country]</li>
+                        <li><i class="fas fa-graduation-cap"></i> <strong>Education:</strong> [Your Education]</li>
+                        <li><i class="fas fa-briefcase"></i> <strong>Profession:</strong> [Your Profession]</li>
+                        <li><i class="fas fa-heart"></i> <strong>Hobbies:</strong> [Your Hobbies]</li>
                     </ul>
                 </div>
             </div>
@@ -407,54 +447,106 @@
             <div class="section-title">
                 <h2>My Gallery</h2>
             </div>
-            <div class="gallery-container">
+            
+            <div class="gallery-container" id="gallery-container">
+                <!-- Images will be loaded here from your folder -->
+                <!-- Placeholder items will be replaced by actual images -->
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1771&q=80" alt="Team Collaboration">
+                    <div class="image-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p>Image 1 will appear here</p>
+                    </div>
                     <div class="gallery-overlay">
-                        <h4>Team Collaboration</h4>
-                        <p>Working with my team on exciting projects</p>
+                        <h4>My Photo 1</h4>
+                        <p>Description for your first photo</p>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1555099962-4199c345e5dd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Conference Speaking">
+                    <div class="image-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p>Image 2 will appear here</p>
+                    </div>
                     <div class="gallery-overlay">
-                        <h4>Conference Speaking</h4>
-                        <p>Sharing knowledge at a tech conference</p>
+                        <h4>My Photo 2</h4>
+                        <p>Description for your second photo</p>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Project Work">
+                    <div class="image-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p>Image 3 will appear here</p>
+                    </div>
                     <div class="gallery-overlay">
-                        <h4>Project Work</h4>
-                        <p>Developing a new web application</p>
+                        <h4>My Photo 3</h4>
+                        <p>Description for your third photo</p>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1769&q=80" alt="Award Ceremony">
+                    <div class="image-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p>Image 4 will appear here</p>
+                    </div>
                     <div class="gallery-overlay">
-                        <h4>Award Ceremony</h4>
-                        <p>Receiving an award for best web design</p>
+                        <h4>My Photo 4</h4>
+                        <p>Description for your fourth photo</p>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Office Environment">
+                    <div class="image-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p>Image 5 will appear here</p>
+                    </div>
                     <div class="gallery-overlay">
-                        <h4>Office Environment</h4>
-                        <p>My creative workspace</p>
+                        <h4>My Photo 5</h4>
+                        <p>Description for your fifth photo</p>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1776&q=80" alt="Travel Experience">
+                    <div class="image-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p>Image 6 will appear here</p>
+                    </div>
                     <div class="gallery-overlay">
-                        <h4>Travel Experience</h4>
-                        <p>Exploring new places for inspiration</p>
+                        <h4>My Photo 6</h4>
+                        <p>Description for your sixth photo</p>
                     </div>
                 </div>
+            </div>
+            
+            <!-- Instructions for setting up images -->
+            <div class="upload-section">
+                <h3>How to Add Your Photos</h3>
+                <p>To display your photos on this website:</p>
+                <ol style="text-align: left; display: inline-block; margin: 1rem 0;">
+                    <li>Create a folder named "images" in the same location as this HTML file</li>
+                    <li>Place your 6 photos in the "images" folder</li>
+                    <li>Name your photos: photo1.jpg, photo2.jpg, photo3.jpg, photo4.jpg, photo5.jpg, photo6.jpg</li>
+                    <li>Place your profile picture in the same folder and name it "profile.jpg"</li>
+                </ol>
+                <p>Your photos will automatically appear on the page!</p>
+                
+                <!-- Alternative: Upload images directly -->
+                <h3 style="margin-top: 2rem;">Or Upload Photos Directly</h3>
+                <input type="file" id="image-upload" class="file-input" accept="image/*" multiple>
+                <button id="upload-btn" class="btn">Upload Selected Images</button>
+                <p><small>You can select multiple images at once</small></p>
             </div>
         </div>
     </section>
 
-   
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <ul class="social-links">
+                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                <li><a href="#"><i class="fab fa-github"></i></a></li>
+            </ul>
+            <p class="copyright">&copy; <span id="current-year"></span> [Your Name]. All Rights Reserved.</p>
+        </div>
+    </footer>
 
     <script>
         // Mobile Menu Toggle
@@ -493,6 +585,162 @@
                 }
             });
         });
+        
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Load images from local folder
+        function loadLocalImages() {
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const imageTitles = [
+                "My Photo 1",
+                "My Photo 2", 
+                "My Photo 3",
+                "My Photo 4",
+                "My Photo 5",
+                "My Photo 6"
+            ];
+            
+            const imageDescriptions = [
+                "A memorable moment from my life",
+                "One of my favorite experiences",
+                "A special occasion worth remembering",
+                "A place I love to visit",
+                "Time spent with loved ones",
+                "A personal achievement I'm proud of"
+            ];
+            
+            // Try to load images from the "images" folder
+            for (let i = 0; i < galleryItems.length; i++) {
+                const img = new Image();
+                const imgIndex = i + 1;
+                
+                // Try different possible image paths and extensions
+                const possiblePaths = [
+                    `images/photo${imgIndex}.jpg`,
+                    `images/photo${imgIndex}.jpeg`,
+                    `images/photo${imgIndex}.png`,
+                    `images/image${imgIndex}.jpg`,
+                    `images/img${imgIndex}.jpg`,
+                    `./images/photo${imgIndex}.jpg`,
+                    `../images/photo${imgIndex}.jpg`
+                ];
+                
+                // Check if image exists
+                img.onload = function() {
+                    // Replace placeholder with actual image
+                    const placeholder = galleryItems[i].querySelector('.image-placeholder');
+                    if (placeholder) {
+                        placeholder.style.display = 'none';
+                    }
+                    
+                    // Create img element
+                    const imgElement = document.createElement('img');
+                    imgElement.src = this.src;
+                    imgElement.alt = `My Photo ${imgIndex}`;
+                    
+                    // Insert image at the beginning of gallery item
+                    galleryItems[i].insertBefore(imgElement, galleryItems[i].firstChild);
+                    
+                    // Update overlay text
+                    const overlay = galleryItems[i].querySelector('.gallery-overlay');
+                    if (overlay) {
+                        const title = overlay.querySelector('h4');
+                        const description = overlay.querySelector('p');
+                        
+                        if (title) title.textContent = imageTitles[i] || `My Photo ${imgIndex}`;
+                        if (description) description.textContent = imageDescriptions[i] || `Description for photo ${imgIndex}`;
+                    }
+                };
+                
+                // Try each possible path
+                let currentPathIndex = 0;
+                function tryNextPath() {
+                    if (currentPathIndex < possiblePaths.length) {
+                        img.src = possiblePaths[currentPathIndex];
+                        currentPathIndex++;
+                    }
+                }
+                
+                img.onerror = tryNextPath;
+                tryNextPath();
+            }
+            
+            // Try to load profile picture
+            const profileImg = new Image();
+            const profilePaths = [
+                'profile.jpg',
+                'images/profile.jpg',
+                'images/profile.jpeg',
+                'images/profile.png',
+                './images/profile.jpg'
+            ];
+            
+            let profilePathIndex = 0;
+            function tryNextProfilePath() {
+                if (profilePathIndex < profilePaths.length) {
+                    profileImg.src = profilePaths[profilePathIndex];
+                    profilePathIndex++;
+                }
+            }
+            
+            profileImg.onload = function() {
+                document.getElementById('profile-pic').src = this.src;
+            };
+            
+            profileImg.onerror = tryNextProfilePath;
+            tryNextProfilePath();
+        }
+        
+        // Upload images directly
+        document.getElementById('upload-btn').addEventListener('click', function() {
+            const fileInput = document.getElementById('image-upload');
+            const files = fileInput.files;
+            
+            if (files.length === 0) {
+                alert('Please select some images first!');
+                return;
+            }
+            
+            // Limit to 6 images
+            const imageFiles = Array.from(files).slice(0, 6);
+            
+            // Clear existing gallery
+            const galleryContainer = document.getElementById('gallery-container');
+            galleryContainer.innerHTML = '';
+            
+            // Create new gallery items for uploaded images
+            imageFiles.forEach((file, index) => {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const galleryItem = document.createElement('div');
+                    galleryItem.className = 'gallery-item';
+                    
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.alt = `Uploaded Photo ${index + 1}`;
+                    
+                    const overlay = document.createElement('div');
+                    overlay.className = 'gallery-overlay';
+                    overlay.innerHTML = `<h4>Uploaded Photo ${index + 1}</h4><p>${file.name}</p>`;
+                    
+                    galleryItem.appendChild(img);
+                    galleryItem.appendChild(overlay);
+                    galleryContainer.appendChild(galleryItem);
+                };
+                
+                reader.readAsDataURL(file);
+            });
+            
+            // Reset file input
+            fileInput.value = '';
+            
+            alert(`${imageFiles.length} images uploaded successfully!`);
+        });
+        
+        // Load images when page loads
+        window.addEventListener('DOMContentLoaded', loadLocalImages);
     </script>
 </body>
 </html>
