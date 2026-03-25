@@ -45,7 +45,7 @@ button {
 
 <h1>อัปโหลดรูป (PNG / JPG / GIF)</h1>
 
-<input type="file" id="fileInput" accept="image/png, image/jpeg, image/gif">
+<input type="file" id="fileInput" accept="images/png, images/jpeg, images/gif">
 
 <img id="preview" src="">
 
@@ -65,7 +65,7 @@ input.addEventListener("change", () => {
     if (!file) return;
 
     // เช็คประเภทไฟล์
-    const allowedTypes = ["image/png", "image/jpeg", "image/gif"];
+    const allowedTypes = ["images/png", "images/jpeg", "images/gif"];
     if (!allowedTypes.includes(file.type)) {
         alert("เอาไฟล์รูปมาเหอะ อย่ามั่ว 😑");
         return;
