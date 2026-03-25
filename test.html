@@ -2,73 +2,77 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<title>Upload to GitHub</title>
+<title>My Images</title>
+
 <style>
-body { font-family:sans-serif; text-align:center; background:#111; color:#fff; padding:50px; }
-img { max-width:300px; margin-top:20px; border-radius:10px; }
-button { padding:10px; margin-top:10px; }
+body {
+    background: #111;
+    color: white;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+    gap: 15px;
+    padding: 20px;
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+}
 </style>
 </head>
 <body>
 
-<h1>อัปรูปขึ้น GitHub 🚀</h1>
+<h1>รูปทั้งหมด</h1>
 
-<input type="file" id="fileInput" accept="image/png, image/jpeg, image/gif">
-<br>
-<button onclick="upload()">UPLOAD</button>
-
-<img id="preview">
-<p id="result"></p>
+<div class="gallery" id="gallery"></div>
 
 <script>
-const TOKEN = "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";
 const USERNAME = "shxp3";
 const REPO = "WebPage";
+const FOLDER = "images";
 
-let file;
+async function loadImages() {
+    const res = await fetch(`https://api.github.com/repos/${USERNAME}/${REPO}/contents/${FOLDER}`);
+    const data = await res.json();
 
-document.getElementById("fileInput").addEventListener("change", e => {
-    file = e.target.files[0];
+    const gallery = document.getElementById("gallery");
 
-    if (!file) return;
+    data.forEach(file => {
+        if (file.type === "file") {
 
-    document.getElementById("preview").src = URL.createObjectURL(file);
-});
+            // รองรับ png jpg gif
+            if (file.name.match(/\.(png|jpg|jpeg|gif)$/i)) {
 
-async function upload() {
-    if (!file) return alert("เลือกไฟล์ก่อนดิ 😑");
+                const img = document.createElement("img");
 
-    const reader = new FileReader();
+                // ใช้ raw link
+                const rawURL = file.download_url;
 
-    reader.onload = async function() {
-        const base64 = reader.result.split(",")[1];
+                img.src = rawURL;
 
-        const fileName = Date.now() + "_" + file.name;
+                // กดแล้วเปิดรูปเปล่า (เอาไปวาง Discord ได้)
+                img.onclick = () => {
+                    window.open(rawURL, "_blank");
+                };
 
-        const res = await fetch(`https://api.github.com/repos/${USERNAME}/${REPO}/contents/images/${fileName}`, {
-            method: "PUT",
-            headers: {
-                "Authorization": `Bearer ${TOKEN}`,
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                message: "upload image",
-                content: base64
-            })
-        });
-
-        const data = await res.json();
-
-        const rawURL = `https://raw.githubusercontent.com/${USERNAME}/${REPO}/main/images/${fileName}`;
-
-        document.getElementById("result").innerHTML = `
-            ✅ อัปเสร็จแล้ว<br>
-            <a href="${rawURL}" target="_blank">${rawURL}</a>
-        `;
-    };
-
-    reader.readAsDataURL(file);
+                gallery.appendChild(img);
+            }
+        }
+    });
 }
+
+loadImages();
 </script>
 
 </body>
