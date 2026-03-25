@@ -623,7 +623,7 @@
                 let currentPathIndex = 0;
                 function tryNextPath() {
                     if (currentPathIndex < possiblePaths.length) {
-                        img.src = possiblePaths[currentPathIndex];
+                        img.src = "https://raw.githubusercontent.com/shxp3/WebPage/main/images/photo" + imgIndex + ".png";
                         currentPathIndex++;
                     }
                 }
@@ -645,7 +645,7 @@
             let profilePathIndex = 0;
             function tryNextProfilePath() {
                 if (profilePathIndex < profilePaths.length) {
-                    profileImg.src = profilePaths[profilePathIndex];
+                    profileImg.src = "https://raw.githubusercontent.com/shxp3/WebPage/main/images/photo" + imgIndex + ".png";
                     profilePathIndex++;
                 }
             }
@@ -684,7 +684,7 @@
                     galleryItem.className = 'gallery-item';
                     
                     const img = document.createElement('img');
-                    img.src = e.target.result;
+                    img.src = "https://raw.githubusercontent.com/shxp3/WebPage/main/images/photo" + imgIndex + ".png";
                     img.alt = `Uploaded Photo ${index + 1}`;
                     
                     const overlay = document.createElement('div');
