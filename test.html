@@ -555,158 +555,34 @@
         
         // Load images from local folder
         function loadLocalImages() {
-            const galleryItems = document.querySelectorAll('.gallery-item');
-            const imageTitles = [
-                "My Photo 1",
-                "My Photo 2", 
-                "My Photo 3",
-                "My Photo 4",
-                "My Photo 5",
-                "My Photo 6"
-            ];
-            
-            const imageDescriptions = [
-                "A memorable moment from my life",
-                "One of my favorite experiences",
-                "A special occasion worth remembering",
-                "A place I love to visit",
-                "Time spent with loved ones",
-                "A personal achievement I'm proud of"
-            ];
-            
-            // Try to load images from the "images" folder
-            for (let i = 0; i < galleryItems.length; i++) {
-                const img = new Image();
-                const imgIndex = i + 1;
-                
-                // Try different possible image paths and extensions
-                const possiblePaths = [
-                    `images/photo${imgIndex}.jpg`,
-                    `images/photo${imgIndex}.jpeg`,
-                    `images/photo${imgIndex}.png`,
-                    `images/image${imgIndex}.jpg`,
-                    `images/img${imgIndex}.jpg`,
-                    `./images/photo${imgIndex}.jpg`,
-                    `../images/photo${imgIndex}.jpg`,
-                    `./images/photo${imgIndex}.png`,
-                    `../images/photo${imgIndex}.png`
-                ];
-                
-                // Check if image exists
-                img.onload = function() {
-                    // Replace placeholder with actual image
-                    const placeholder = galleryItems[i].querySelector('.image-placeholder');
-                    if (placeholder) {
-                        placeholder.style.display = 'none';
-                    }
-                    
-                    // Create img element
-                    const imgElement = document.createElement('img');
-                    imgElement.src = this.src;
-                    imgElement.alt = `My Photo ${imgIndex}`;
-                    
-                    // Insert image at the beginning of gallery item
-                    galleryItems[i].insertBefore(imgElement, galleryItems[i].firstChild);
-                    
-                    // Update overlay text
-                    const overlay = galleryItems[i].querySelector('.gallery-overlay');
-                    if (overlay) {
-                        const title = overlay.querySelector('h4');
-                        const description = overlay.querySelector('p');
-                        
-                        if (title) title.textContent = imageTitles[i] || `My Photo ${imgIndex}`;
-                        if (description) description.textContent = imageDescriptions[i] || `Description for photo ${imgIndex}`;
-                    }
-                };
-                
-                // Try each possible path
-                let currentPathIndex = 0;
-                function tryNextPath() {
-                    if (currentPathIndex < possiblePaths.length) {
-                        img.src = "https://raw.githubusercontent.com/shxp3/WebPage/main/images/photo" + imgIndex + ".png";
-                        currentPathIndex++;
-                    }
-                }
-                
-                img.onerror = tryNextPath;
-                tryNextPath();
-            }
-            
-            // Try to load profile picture
-            const profileImg = new Image();
-            const profilePaths = [
-                'profile.jpg',
-                'images/profile.jpg',
-                'images/profile.jpeg',
-                'images/profile.png',
-                './images/profile.jpg'
-            ];
-            
-            let profilePathIndex = 0;
-            function tryNextProfilePath() {
-                if (profilePathIndex < profilePaths.length) {
-                    profileImg.src = "https://raw.githubusercontent.com/shxp3/WebPage/main/images/photo" + imgIndex + ".png";
-                    profilePathIndex++;
-                }
-            }
-            
-            profileImg.onload = function() {
-                document.getElementById('profile-pic').src = this.src;
-            };
-            
-            profileImg.onerror = tryNextProfilePath;
-            tryNextProfilePath();
-        }
-        
-        // Upload images directly
-        document.getElementById('upload-btn').addEventListener('click', function() {
-            const fileInput = document.getElementById('image-upload');
-            const files = fileInput.files;
-            
-            if (files.length === 0) {
-                alert('Please select some images first!');
-                return;
-            }
-            
-            // Limit to 6 images
-            const imageFiles = Array.from(files).slice(0, 6);
-            
-            // Clear existing gallery
-            const galleryContainer = document.getElementById('gallery-container');
-            galleryContainer.innerHTML = '';
-            
-            // Create new gallery items for uploaded images
-            imageFiles.forEach((file, index) => {
-                const reader = new FileReader();
-                
-                reader.onload = function(e) {
-                    const galleryItem = document.createElement('div');
-                    galleryItem.className = 'gallery-item';
-                    
-                    const img = document.createElement('img');
-                    img.src = "https://raw.githubusercontent.com/shxp3/WebPage/main/images/photo" + imgIndex + ".png";
-                    img.alt = `Uploaded Photo ${index + 1}`;
-                    
-                    const overlay = document.createElement('div');
-                    overlay.className = 'gallery-overlay';
-                    overlay.innerHTML = `<h4>Uploaded Photo ${index + 1}</h4><p>${file.name}</p>`;
-                    
-                    galleryItem.appendChild(img);
-                    galleryItem.appendChild(overlay);
-                    galleryContainer.appendChild(galleryItem);
-                };
-                
-                reader.readAsDataURL(file);
-            });
-            
-            // Reset file input
-            fileInput.value = '';
-            
-            alert(`${imageFiles.length} images uploaded successfully!`);
-        });
-        
-        // Load images when page loads
-        window.addEventListener('DOMContentLoaded', loadLocalImages);
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    for (let i = 0; i < galleryItems.length; i++) {
+        const imgIndex = i + 1;
+
+        const imgElement = document.createElement('img');
+        imgElement.src = `images/photo${imgIndex}.png`;
+        imgElement.alt = `My Photo ${imgIndex}`;
+
+        imgElement.onload = function () {
+            const placeholder = galleryItems[i].querySelector('.image-placeholder');
+            if (placeholder) placeholder.style.display = 'none';
+
+            galleryItems[i].insertBefore(imgElement, galleryItems[i].firstChild);
+        };
+
+        imgElement.onerror = function () {
+            console.log(`โหลดไม่ได้: images/photo${imgIndex}.png`);
+        };
+    }
+
+    // ✅ profile
+    const profilePic = document.getElementById('profile-pic');
+    profilePic.src = "images/profile.png";
+}
+
+// โหลดตอนเปิดเว็บ
+window.addEventListener('DOMContentLoaded', loadLocalImages);
     </script>
 </body>
 </html>
