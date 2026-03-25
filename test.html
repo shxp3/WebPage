@@ -2,7 +2,7 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<title>GIF Upload</title>
+<title>Image Upload</title>
 <style>
 body {
     font-family: sans-serif;
@@ -28,35 +28,64 @@ img {
     padding: 10px;
     border-radius: 5px;
     word-break: break-all;
+    margin-top: 10px;
+}
+
+button {
+    padding: 8px 15px;
+    border: none;
+    background: #3498db;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
 }
 </style>
 </head>
 <body>
 
-<h1>อัป GIF แล้วเอาลิงก์ไปใช้</h1>
+<h1>อัปโหลดรูป (PNG / JPG / GIF)</h1>
 
-<input type="file" id="fileInput" accept="image/gif">
+<input type="file" id="fileInput" accept="image/png, image/jpeg, image/gif">
 
 <img id="preview" src="">
 
 <div class="link-box" id="linkBox">ลิงก์จะขึ้นตรงนี้</div>
+
+<button onclick="copyLink()">คัดลอกลิงก์</button>
 
 <script>
 const input = document.getElementById("fileInput");
 const preview = document.getElementById("preview");
 const linkBox = document.getElementById("linkBox");
 
+let currentURL = "";
+
 input.addEventListener("change", () => {
     const file = input.files[0];
-
     if (!file) return;
+
+    // เช็คประเภทไฟล์
+    const allowedTypes = ["image/png", "image/jpeg", "image/gif"];
+    if (!allowedTypes.includes(file.type)) {
+        alert("เอาไฟล์รูปมาเหอะ อย่ามั่ว 😑");
+        return;
+    }
 
     // preview
     const url = URL.createObjectURL(file);
     preview.src = url;
 
-    linkBox.innerText = "⚠️ อันนี้ยังใช้ใน Discord ไม่ได้ ต้องอัปโหลดขึ้นเว็บก่อน";
+    // อันนี้ยังเป็น local URL (ใช้ใน Discord ไม่ได้)
+    currentURL = url;
+    linkBox.innerText = url;
 });
+
+function copyLink() {
+    if (!currentURL) return;
+
+    navigator.clipboard.writeText(currentURL);
+    alert("คัดลอกละ (แต่ยังใช้ Discord ไม่ได้นะ 😂)");
+}
 </script>
 
 </body>
